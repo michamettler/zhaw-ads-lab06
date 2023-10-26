@@ -8,8 +8,7 @@ package ch.zhaw.ads;
  */
 public class AVLSearchTree<T extends Comparable<T>> extends SortedBinaryTree<T> {
     private boolean balanced(TreeNode<T> node) {
-        // TODO Implement (6.4)
-        return true;
+        return calcHeight(root.left) == calcHeight(root.right);
     }
 
     public boolean balanced() {
