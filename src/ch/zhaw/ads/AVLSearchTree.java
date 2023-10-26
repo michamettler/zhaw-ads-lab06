@@ -18,7 +18,7 @@ public class AVLSearchTree<T extends Comparable<T>> extends SortedBinaryTree<T> 
 
     @Override
     protected int calcSize(TreeNode<T> p) {
-        return 0;// TODO Implement (6.2)
+        return Integer.max(p.left.height, p.right.height);
     }
 
     /**
@@ -41,15 +41,15 @@ public class AVLSearchTree<T extends Comparable<T>> extends SortedBinaryTree<T> 
             return null;
         } else if (height(p.left) - height(p.right) == 2) {
             if (height(p.left.left) >= height(p.left.right)) {
-                // TODO Implement (6.2)
+                p = rotateR(p);
             } else {
-                // TODO Implement (6.2)
+                p = rotateLR(p);
             }
         } else if (height(p.right) - height(p.left) == 2) {
             if (height(p.right.right) >= height(p.right.left)) {
-                // TODO Implement (6.2)
+                p = rotateL(p);
             } else {
-                // TODO Implement (6.2)
+                p = rotateRL(p);
             }
         }
         p.height = Math.max(height(p.left), height(p.right)) + 1;
