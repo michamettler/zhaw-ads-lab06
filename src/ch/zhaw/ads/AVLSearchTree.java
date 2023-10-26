@@ -25,7 +25,7 @@ public class AVLSearchTree<T extends Comparable<T>> extends SortedBinaryTree<T> 
 
     @Override
     protected int calcSize(TreeNode<T> p) {
-        return Integer.max(p.left.height, p.right.height);
+        return p == null ? 0 : p.values.size() + calcSize(p.left) + calcSize(p.right);
     }
 
     /**
@@ -131,8 +131,7 @@ public class AVLSearchTree<T extends Comparable<T>> extends SortedBinaryTree<T> 
                 // search right
                 node.right = removeAt(node.right, x);
             }
-            // TODO Implement (6.5)
-            return node;
+            return balanced(node) ? node : balance(node);
         }
     }
 
